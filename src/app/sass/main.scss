@@ -6,36 +6,36 @@ body {
     font: $font-stack;
 }
 
-.baby-row {
-    height: $baby-row-height;
+.task-row {
+    height: $task-row-height;
     background-color: white;
     width: 100%;
 
     @include phone {
-        height: $baby-row-height * 4;
+        height: $task-row-height * 4;
     }
 
-    .baby-name {
-        font-size: $baby-row-height - 15px;
+    .task-name {
+        font-size: $task-row-height - 15px;
         padding-left: 10px;
         position:absolute;
         width: 80%;
         text-overflow: ellipses;
 
         @include phone {
-            padding-top: $baby-row-height - 15px;
-            font-size: $baby-row-height * 2 - 30px;
+            padding-top: $task-row-height - 15px;
+            font-size: $task-row-height * 2 - 30px;
         }
     }
 
-    .baby-bars {
+    .task-bars {
         display: inline-block;
         background-color:red;
         width: 80%;
         height: 100%;
     }
 
-    .baby-buttons {
+    .task-buttons {
         display: inline-block;
         width: 20%;
         float: right;
@@ -43,13 +43,13 @@ body {
 
         div {
             background-color: green;
-            font-size: $baby-row-height / 2;
+            font-size: $task-row-height / 2;
             height: 50%;
             width: 100%;
             text-align:center;
 
             @include phone {
-                font-size: $baby-row-height;
+                font-size: $task-row-height;
             }
         }
     }
