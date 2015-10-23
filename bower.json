@@ -1,0 +1,23 @@
+{
+  "name": "babytracker",
+  "description": "A simple app for tracking babies' needs in preschool.",
+  "main": "index.js",
+  "authors": [
+    "Brandon Fulljames"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/evertras/babytracker",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/lib/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7"
+  }
+}
