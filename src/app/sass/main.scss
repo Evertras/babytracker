@@ -6,31 +6,51 @@ body {
     font: $font-stack;
 }
 
-.baby-name {
-    font-size: $baby-row-height - 10;
-    padding-left: 10px;
-    position:absolute;
-}
-
 .baby-row {
     height: $baby-row-height;
     background-color: white;
-}
+    width: 100%;
 
-.baby-bars {
-    display: inline-block;
-    background-color:red;
-    width: 80%;
-    height: $baby-row-height;
-}
+    @include phone {
+        height: $baby-row-height * 4;
+    }
 
-.baby-buttons {
-    display: inline-block;
-    width: 10%;
+    .baby-name {
+        font-size: $baby-row-height - 15px;
+        padding-left: 10px;
+        position:absolute;
+        width: 80%;
+        text-overflow: ellipses;
 
-    div {
-        background-color: green;
-        height: $baby-row-height / 2;
-        width: 100%;
+        @include phone {
+            padding-top: $baby-row-height - 15px;
+            font-size: $baby-row-height * 2 - 30px;
+        }
+    }
+
+    .baby-bars {
+        display: inline-block;
+        background-color:red;
+        width: 80%;
+        height: 100%;
+    }
+
+    .baby-buttons {
+        display: inline-block;
+        width: 20%;
+        float: right;
+        height: 100%;
+
+        div {
+            background-color: green;
+            font-size: $baby-row-height / 2;
+            height: 50%;
+            width: 100%;
+            text-align:center;
+
+            @include phone {
+                font-size: $baby-row-height;
+            }
+        }
     }
 }

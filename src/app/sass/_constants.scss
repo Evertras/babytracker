@@ -8,3 +8,21 @@ $background-color: #335;
 
 /* Layout */
 $baby-row-height: 100px;
+
+
+/* Media */
+$phone-width: 640px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin phone {
+    @media (max-device-width: #{$tablet-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-device-width: #{$tablet-width}) and (max-device-width: #{$desktop-width - 1px}) {
+        @content;
+    }
+}
