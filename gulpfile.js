@@ -7,7 +7,7 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var bower = require('main-bower-files');
 
-gulp.task('default', ['lint', 'sass', 'scripts']);
+gulp.task('default', ['lint', 'sass', 'scripts', 'lib']);
 
 gulp.task('lint', function() {
     return gulp.src('src/js/**/*.js')
