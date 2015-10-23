@@ -18,7 +18,9 @@ gulp.task('lint', function() {
 gulp.task('sass', function() {
     return gulp.src('src/app/sass/*.scss')
                .pipe(sass())
-               .pipe(gulp.dest('src/build/css'));
+               .pipe(gulp.dest('src/build/css'))
+               .pipe(concat('site.css'))
+               .pipe(gulp.dest('wwwroot/css'));
 });
 
 gulp.task('scripts', function() {
