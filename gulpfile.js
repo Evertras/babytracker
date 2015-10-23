@@ -9,6 +9,11 @@ var bower = require('main-bower-files');
 
 gulp.task('default', ['lint', 'html', 'sass', 'scripts', 'lib']);
 
+gulp.task('watch', function() {
+    gulp.watch('src/app/js/**/*.js', ['lint', 'scripts']);
+    gulp.watch('src/app/sass/**/*.scss', ['sass']);
+});
+
 gulp.task('lint', function() {
     return gulp.src('src/app/js/**/*.js')
                .pipe(jshint())

@@ -1,3 +1,36 @@
+@import 'reset';
+@import 'constants';
+
 body {
-    background-color: #444;
+    background-color: $background-color;
+    font: $font-stack;
+}
+
+.baby-name {
+    font-size: $baby-row-height - 10;
+    padding-left: 10px;
+    position:absolute;
+}
+
+.baby-row {
+    height: $baby-row-height;
+    background-color: white;
+}
+
+.baby-bars {
+    display: inline-block;
+    background-color:red;
+    width: 80%;
+    height: $baby-row-height;
+}
+
+.baby-buttons {
+    display: inline-block;
+    width: 10%;
+
+    div {
+        background-color: green;
+        height: $baby-row-height / 2;
+        width: 100%;
+    }
 }
