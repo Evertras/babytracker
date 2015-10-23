@@ -7,50 +7,51 @@ body {
 }
 
 .task-row {
-    height: $task-row-height;
     background-color: white;
     width: 100%;
 
-    @include phone {
-        height: $task-row-height * 4;
-    }
-
     .task-name {
-        font-size: $task-row-height - 15px;
+        font-size: $task-bar-height - 15px;
         padding-left: 10px;
         position:absolute;
         width: 80%;
         text-overflow: ellipses;
 
         @include phone {
-            padding-top: $task-row-height - 15px;
-            font-size: $task-row-height * 2 - 30px;
+            font-size: $task-bar-phone-height - 30px;
         }
     }
 
-    .task-bars {
+    .task-bar-container {
         display: inline-block;
-        background-color:red;
+        float: left;
         width: 80%;
-        height: 100%;
+        height: $task-bar-height;
+        background-color: white;
+
+        @include phone {
+            height: $task-bar-phone-height;
+        }
+
+        .task-bar {
+            height: 100%;
+            background-color: gray;
+            width: 50%;
+        }
     }
 
-    .task-buttons {
+    .task-button {
         display: inline-block;
         width: 20%;
         float: right;
-        height: 100%;
+        height: $task-bar-height;
+        background-color: green;
+        font-size: $task-bar-height - 10px;
+        text-align:center;
 
-        div {
-            background-color: green;
-            font-size: $task-row-height / 2;
-            height: 50%;
-            width: 100%;
-            text-align:center;
-
-            @include phone {
-                font-size: $task-row-height;
-            }
+        @include phone {
+            font-size: $task-bar-phone-height / 2;
+            height: $task-bar-phone-height;
         }
     }
 }
