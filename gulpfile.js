@@ -7,22 +7,27 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var bower = require('main-bower-files');
 
-gulp.task('default', ['lint', 'sass', 'scripts', 'lib']);
+gulp.task('default', ['lint', 'html', 'sass', 'scripts', 'lib']);
 
 gulp.task('lint', function() {
-    return gulp.src('src/js/**/*.js')
+    return gulp.src('src/app/js/**/*.js')
                .pipe(jshint())
                .pipe(jshint.reporter('default'));
 });
 
 gulp.task('sass', function() {
-    return gulp.src('src/sass/*.scss')
+    return gulp.src('src/app/sass/*.scss')
                .pipe(sass())
                .pipe(gulp.dest('src/build/css'));
 });
 
 gulp.task('scripts', function() {
-    return gulp.src('src/js/**/*.js')
+    var srcFiles = [
+                    'src/app/js/**/*.js',
+                    '!src/app/js/**/*.tests.js'
+                   ];
+
+    return gulp.src(srcFiles)
                .pipe(concat('app.js'))
                .pipe(gulp.dest('wwwroot/js'))
                .pipe(rename('app.min.js'))
@@ -33,4 +38,9 @@ gulp.task('scripts', function() {
 gulp.task('lib', function() {
     return gulp.src(bower(), { base: 'src/lib' })
                .pipe(gulp.dest('wwwroot/lib'));
+});
+
+gulp.task('html', function() {
+    return gulp.src('src/app/html/**/*.html')
+               .pipe(gulp.dest('wwwroot'));
 });
