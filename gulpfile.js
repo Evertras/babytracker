@@ -5,6 +5,7 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
+var bower = require('main-bower-files');
 
 gulp.task('default', ['lint', 'sass', 'scripts']);
 
@@ -27,4 +28,9 @@ gulp.task('scripts', function() {
                .pipe(rename('app.min.js'))
                .pipe(uglify())
                .pipe(gulp.dest('wwwroot/js'));
+});
+
+gulp.task('lib', function() {
+    return gulp.src(bower(), { base: 'src/lib' })
+               .pipe(gulp.dest('wwwroot/lib'));
 });
