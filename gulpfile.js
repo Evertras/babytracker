@@ -6,8 +6,15 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var bower = require('main-bower-files');
+var del = require('del');
+var flatten = require('gulp-flatten');
 
 gulp.task('default', ['lint', 'html', 'sass', 'scripts', 'lib']);
+
+gulp.task('clean', function() {
+    // Sync = synchronous
+    del.sync(['wwwroot/**', '!wwwroot']);
+});
 
 gulp.task('watch', function() {
     gulp.watch('src/app/js/**/*.js', ['lint', 'scripts']);
@@ -21,7 +28,12 @@ gulp.task('lint', function() {
 });
 
 gulp.task('sass', function() {
-    return gulp.src('src/app/sass/*.scss')
+    var srcFiles = [
+                    'src/app/sass/**/*.scss',
+                    'src/app/components/**/*.scss'
+                   ];
+
+    return gulp.src(srcFiles)
                .pipe(sass())
                .pipe(gulp.dest('src/build/css'))
                .pipe(concat('site.css'))
@@ -31,7 +43,8 @@ gulp.task('sass', function() {
 gulp.task('scripts', function() {
     var srcFiles = [
                     'src/app/js/**/*.js',
-                    '!src/app/js/**/*.tests.js'
+                    'src/app/components/**/*.js',
+                    '!src/app//**/*.tests.js'
                    ];
 
     return gulp.src(srcFiles)
@@ -47,7 +60,13 @@ gulp.task('lib', function() {
                .pipe(gulp.dest('wwwroot/lib'));
 });
 
-gulp.task('html', function() {
+gulp.task('html', ['html:templates'], function() {
     return gulp.src('src/app/html/**/*.html')
                .pipe(gulp.dest('wwwroot'));
+});
+
+gulp.task('html:templates', function() {
+    return gulp.src('src/app/components/**/*.html')
+               .pipe(flatten())
+               .pipe(gulp.dest('wwwroot/template'));
 });
