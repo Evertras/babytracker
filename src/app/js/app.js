@@ -6,6 +6,4 @@
         'taskBarController',
         'taskBarService'
     ]);
-
-    console.log("Started");
 })();

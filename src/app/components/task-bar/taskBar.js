@@ -5,7 +5,10 @@
         return {
             restrict: 'E',
             templateUrl: 'template/task-bar.html',
-            scope: {},
+            scope: {
+                'task': '@',
+                'subtask': '@'
+            },
             controller: 'taskBarController',
             controllerAs: 'vm'
         };
