@@ -1,7 +1,8 @@
 @import '../../sass/constants';
 
 .task-bar-container {
-    display: inline-block;
+    position: relative;
+    z-index: -1;
     float: left;
     width: 80%;
     height: $task-bar-height;
@@ -19,8 +20,9 @@
     }
 
     .task-bar-timer {
-        float: right;
+        right: 0;
         background-color: red;
+        position: absolute;
         font-size: $task-bar-height / 4;
 
         @include phone {
