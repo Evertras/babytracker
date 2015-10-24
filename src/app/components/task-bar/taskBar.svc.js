@@ -4,7 +4,8 @@
     module.factory('taskBarService', [function() {
         var callbacks = {};
 
-        var seconds = 100;
+        var totalSeconds = 30;
+        var seconds = totalSeconds;
 
         setInterval(function() {
             --seconds;
@@ -13,15 +14,26 @@
                 seconds = 0;
             }
 
-            callbacks.Amanda.Diaper.forEach(function (callback) {
-                var ret = {
-                    percentComplete: seconds / 100,
-                    secondsRemaining: seconds,
-                    secondsTotal: 100
-                };
+            for (var task in callbacks) {
+                if (callbacks.hasOwnProperty(task)) {
+                    for (var subtask in callbacks[task]) {
+                        if (callbacks[task].hasOwnProperty(subtask)) {
 
-                callback(ret);
-            });
+                            var subtaskCompletion = {
+                                percentRemaining: 1.0 - (seconds / 30),
+                                secondsRemaining: seconds,
+                                secondsTotal: 30
+                            };
+
+                            for (var i = 0; i < callbacks[task][subtask].length; ++i) {
+                                var callback = callbacks[task][subtask][i];
+
+                                callback(subtaskCompletion);
+                            }
+                        }
+                    }
+                }
+            }
         }, 1000);
 
         function addCallback(taskName, subtaskName, callback) {

@@ -8,13 +8,13 @@
         ctrl.subtaskName = $scope.subtask;
 
         ctrl.completion = {
-            percentComplete: 0,
-            secondsRemaining: 100,
-            secondsTotal: 100
+            percentRemaining: 0,
+            secondsRemaining: 30,
+            secondsTotal: 30
         };
 
         taskBarService.registerForCompletionUpdates(ctrl.taskName, ctrl.subtaskName, function(completion) {
-            ctrl.completion.percentComplete = completion.percentComplete;
+            ctrl.completion.percentRemaining = completion.percentRemaining;
             ctrl.completion.secondsRemaining = completion.secondsRemaining;
             ctrl.completion.secondsTotal = completion.secondsTotal;
             $scope.$apply();
