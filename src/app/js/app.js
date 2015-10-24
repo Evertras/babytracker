@@ -1,7 +1,7 @@
 (function() {
     var app = angular.module('taskjuggler', [
         'task',
-        'task-bar'
+        'taskBar'
     ]);
 
     console.log("Started");

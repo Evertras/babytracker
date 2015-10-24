@@ -1,0 +1,51 @@
+@import 'constants';
+
+.task-row {
+    background-color: white;
+    width: 100%;
+
+    .task-name {
+        font-size: $task-bar-height - 15px;
+        padding-left: 10px;
+        position:absolute;
+        width: 80%;
+        text-overflow: ellipses;
+
+        @include phone {
+            font-size: $task-bar-phone-height - 30px;
+        }
+    }
+
+    .task-bar-container {
+        display: inline-block;
+        float: left;
+        width: 80%;
+        height: $task-bar-height;
+        background-color: white;
+
+        @include phone {
+            height: $task-bar-phone-height;
+        }
+
+        .task-bar {
+            height: 100%;
+            background-color: gray;
+            width: 50%;
+        }
+    }
+
+    .task-button {
+        display: inline-block;
+        width: 20%;
+        float: right;
+        height: $task-bar-height;
+        background-color: green;
+        font-size: $task-bar-height - 10px;
+        text-align:center;
+
+        @include phone {
+            font-size: $task-bar-phone-height / 2;
+            height: $task-bar-phone-height;
+        }
+    }
+}

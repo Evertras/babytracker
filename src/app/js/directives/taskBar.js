@@ -1,10 +1,10 @@
 (function() {
-    var app = angular.module('task-bar', []);
+    var app = angular.module('taskBar', []);
 
     app.directive('taskBar', function() {
         return {
             restrict: 'E',
-            template: 'Hi'
+            templateUrl: 'template/task-bar.html'
         };
     });
 })();
