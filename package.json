@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/evertras/babytracker",
   "devDependencies": {
+    "body-parser": "^1.14.1",
     "bower": "^1.6.3",
     "del": "^2.0.2",
     "express": "^4.13.3",
