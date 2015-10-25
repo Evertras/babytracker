@@ -4,11 +4,11 @@
     module.factory('taskBarService', [function() {
         var callbacks = {};
 
-        var totalSeconds = 30;
+        var totalSeconds = 120;
         var seconds = totalSeconds;
 
         setInterval(function() {
-            --seconds;
+            seconds -= 0.01;
 
             if (seconds < 0) {
                 seconds = 0;
@@ -20,9 +20,9 @@
                         if (callbacks[task].hasOwnProperty(subtask)) {
 
                             var subtaskCompletion = {
-                                percentRemaining: 1.0 - (seconds / 30),
+                                percentRemaining: 1.0 - (seconds / totalSeconds),
                                 secondsRemaining: seconds,
-                                secondsTotal: 30
+                                secondsTotal: totalSeconds
                             };
 
                             for (var i = 0; i < callbacks[task][subtask].length; ++i) {
@@ -34,7 +34,7 @@
                     }
                 }
             }
-        }, 1000);
+        }, 10);
 
         function addCallback(taskName, subtaskName, callback) {
             if (!callbacks[taskName]) {
