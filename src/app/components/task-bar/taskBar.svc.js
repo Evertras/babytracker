@@ -3,24 +3,26 @@
 
     module.factory('taskBarService', [function() {
         var callbacks = {};
+        var targetTimes = {};
 
         var totalSeconds = 120;
-        var seconds = totalSeconds;
 
-        var targetTime = moment().add(2, 'minutes');
-        var updateInterval = 1000;
+        var updateInterval = 10;
 
-        setInterval(function() {
-            seconds = targetTime.diff(moment(), 'seconds');
-
-            if (seconds < 0) {
-                seconds = 0;
-            }
-
+        function updateCallbacks() {
             for (var task in callbacks) {
                 if (callbacks.hasOwnProperty(task)) {
                     for (var subtask in callbacks[task]) {
                         if (callbacks[task].hasOwnProperty(subtask)) {
+                            if (!targetTimes[task] || !targetTimes[task][subtask]) {
+                                reset(task, subtask);
+                            }
+
+                            var seconds = targetTimes[task][subtask].diff(moment(), 'seconds', true);
+
+                            if (seconds < 0) {
+                                seconds = 0;
+                            }
 
                             var subtaskCompletion = {
                                 percentRemaining: 1.0 - (seconds / totalSeconds),
@@ -37,7 +39,9 @@
                     }
                 }
             }
-        }, updateInterval);
+        }
+        
+        setInterval(updateCallbacks, updateInterval);
 
         function addCallback(taskName, subtaskName, callback) {
             if (!callbacks[taskName]) {
@@ -51,8 +55,17 @@
             callbacks[taskName][subtaskName].push(callback);
         }
 
+        function reset(taskName, subtaskName) {
+            if (!targetTimes[taskName]) {
+                targetTimes[taskName] = {};
+            }
+
+            targetTimes[taskName][subtaskName] = moment().add(2, 'minutes');
+        }
+
         return { 
-            registerForCompletionUpdates: addCallback
+            registerForCompletionUpdates: addCallback,
+            reset: reset
         };
     }]);
 })();

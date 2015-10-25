@@ -13,6 +13,10 @@
             secondsTotal: 30
         };
 
+        ctrl.reset = function() {
+            taskBarService.reset(ctrl.taskName, ctrl.subtaskName);
+        };
+
         taskBarService.registerForCompletionUpdates(ctrl.taskName, ctrl.subtaskName, function(completion) {
             ctrl.completion.percentRemaining = completion.percentRemaining;
             ctrl.completion.secondsRemaining = completion.secondsRemaining;
