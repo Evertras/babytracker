@@ -7,8 +7,11 @@
         var totalSeconds = 120;
         var seconds = totalSeconds;
 
+        var targetTime = moment().add(2, 'minutes');
+        var updateInterval = 1000;
+
         setInterval(function() {
-            seconds -= 0.01;
+            seconds = targetTime.diff(moment(), 'seconds');
 
             if (seconds < 0) {
                 seconds = 0;
@@ -34,7 +37,7 @@
                     }
                 }
             }
-        }, 10);
+        }, updateInterval);
 
         function addCallback(taskName, subtaskName, callback) {
             if (!callbacks[taskName]) {
