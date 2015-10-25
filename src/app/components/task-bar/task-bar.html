@@ -1,7 +1,7 @@
 <div class="subtask-container">
     <div class="task-bar-container">
         <div class="task-bar" ng-style="{width: (vm.completion.percentRemaining * 100) + '%' }"></div>
-        <div class="task-bar-timer">{{vm.completion.secondsRemaining}} / {{vm.completion.secondsTotal}}</div>
+        <div class="task-bar-timer">{{vm.displayTime}}</div>
     </div>
     <div class="task-button" ng-click="vm.reset()">
         {{vm.subtaskName[0]}}

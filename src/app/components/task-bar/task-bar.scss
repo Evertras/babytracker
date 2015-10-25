@@ -39,6 +39,7 @@
     background-color: green;
     font-size: $task-bar-height - 10px;
     text-align:center;
+    cursor: pointer;
 
     @include phone {
         font-size: $task-bar-phone-height * 3 / 4;

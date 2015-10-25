@@ -21,6 +21,9 @@
             ctrl.completion.percentRemaining = completion.percentRemaining;
             ctrl.completion.secondsRemaining = completion.secondsRemaining;
             ctrl.completion.secondsTotal = completion.secondsTotal;
+
+            ctrl.displayTime = moment.duration(completion.secondsRemaining, 'seconds').humanize(true);
+
             $scope.$apply();
         });
     }]);
